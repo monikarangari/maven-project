@@ -9,5 +9,10 @@ pipeline{
 sh 'mvn test'
 }}}
 
+stage('create deployable package')
+            {steps{withMaven(globalMavenSettingsConfig: '463be4c7-2069-4d04-b1ae-3b3e880a6097', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '49720d00-edb3-4f26-94e2-a16dbe50d77a') {
+sh 'mvn clean package'
+}}}
+
     }
 }
