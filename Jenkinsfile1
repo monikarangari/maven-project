@@ -2,5 +2,5 @@ pipeline{
  agent any
 stages{
 stage('scm checkout'){
-steps{git branch: 'test', url: 'https://github.com/monikarangari/maven-project/'}}
+steps{git branch: 'master', url: 'https://github.com/monikarangari/maven-project/'}}
 }}
