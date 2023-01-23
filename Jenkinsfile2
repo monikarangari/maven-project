@@ -16,4 +16,9 @@ stage('docker image')
 {
 steps{sh 'docker build -t monika1215/docker-image-01 .' }
 }
+stage('list-docker image')
+{
+steps{sh 'docker images' 
+sh 'docker ps'}
+}
 }}
