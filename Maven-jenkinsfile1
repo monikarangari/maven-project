@@ -1,10 +1,12 @@
 pipeline
-{ agent any
+{ 
+   agent any
      stages {
           stage ('scm checkout')
              {steps {git branch: 'master', url: 'https://github.com/monikarangari/maven-project'} }
           stage ('compile the code')
              {steps {withMaven(globalMavenSettingsConfig: '', jdk: 'LOCAL_JDK', maven: 'LOCAL_MVN', mavenSettingsConfig: '', traceability: true) 
-               {sh 'mvn compile'} }
+               {sh 'mvn compile'}
+             }}
      }
 }
