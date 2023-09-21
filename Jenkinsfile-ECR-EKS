@@ -25,4 +25,11 @@ withDockerRegistry(credentialsId: 'ecr:us-east-1:aws', url: 'https://04087221998
 sh 'docker push 040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo:latest'} 
 } }
 
+stage ('eks deployment')
+{ steps { withAWS(credentials: 'aws', endpointUrl: '172.31.24.180:443', region: 'us-east-1')
+{ sh 'aws sts get-caller-identity'
+  sh 'aws eks --region us-east-1 update-kubeconfig --name my-eks-demo'
+  sh 'kubectl apply -f eks-manifest.yaml'}
+} }
+
 }}
