@@ -1,0 +1,28 @@
+pipeline
+{
+agent any
+stages 
+
+{ stage ('scm_checkout')
+  { steps { git branch: 'master', url: 'https://github.com/monikarangari/maven-project' } }
+
+
+  stage ('execute unit test')
+  {steps { withMaven(globalMavenSettingsConfig: '8846345d-0059-40fc-a95a-ae844f01f5e6', jdk: 'LOCAL_JDK', maven: 'LOCAL_MVN', mavenSettingsConfig: 'ca3190ae-99f2-4169-bdb2-6f7ee32aeac8', traceability: true) 
+             {sh 'mvn test'} 
+ }}
+
+
+stage ('build the code')
+{ steps { withMaven(globalMavenSettingsConfig: '8846345d-0059-40fc-a95a-ae844f01f5e6', jdk: 'LOCAL_JDK', maven: 'LOCAL_MVN', mavenSettingsConfig: 'ca3190ae-99f2-4169-bdb2-6f7ee32aeac8', traceability: true) 
+ {  sh 'mvn package' } 
+} } 
+
+stage ('docker build and push')
+{ steps { // This step should not normally be used in your script. Consult the inline help for details.
+withDockerRegistry(credentialsId: 'ecr:us-east-1:awsaccount', url: 'https://040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo') 
+{ sh 'docker build -t  040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo:latest .'
+  sh ' docker  040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo:latest'} 
+} }
+
+}}
