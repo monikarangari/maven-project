@@ -14,7 +14,7 @@ steps {withMaven(globalMavenSettingsConfig: '3f8bb0dc-be09-46c7-9930-a5bf27ce791
 }  
 stage('docker image')
 {
-steps{sh 'docker build -t demo-repository .' }
+steps{sh 'docker build -t 040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo:latest .' }
 }
 stage('list-docker image')
 {
