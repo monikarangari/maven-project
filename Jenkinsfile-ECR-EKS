@@ -30,7 +30,7 @@ stage ('eks deployment')
 { sh 'aws sts get-caller-identity'
   sh 'aws eks --region us-east-1 update-kubeconfig --name my-eks-demo'
   sh 'helm package helm/.'
-  sh 'helm install mydemoapp-0.1.0.tgz helm/.'
+  sh 'helm install mydemoapp helm/.'
   sh 'helm upgrade mydemoapp-0.1.0.tgz helm/.'}
 } }
 
