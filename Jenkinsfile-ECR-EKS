@@ -20,7 +20,7 @@ stage ('build the code')
 
 stage ('docker build and push')
 { steps { // This step should not normally be used in your script. Consult the inline help for details.
-withDockerRegistry(credentialsId: 'ecr:us-east-1:awsaccount', url: 'https://040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo') 
+withDockerRegistry(credentialsId: 'ecr:us-east-1:aws', url: 'https://040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo')
 { sh 'docker build -t  040872219986.dkr.ecr.us-east-1.amazonaws.com/my-ecr-demo:latest .'} 
 } }
 
