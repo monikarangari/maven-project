@@ -29,7 +29,8 @@ stage ('eks deployment')
 { steps { withAWS(credentials: 'aws', region: 'us-east-1')
 { sh 'aws sts get-caller-identity'
   sh 'aws eks --region us-east-1 update-kubeconfig --name my-eks-demo'
-  sh 'helm install mydemoapp helm/Chart.yaml'}
+  sh 'helm package helm/.'
+  sh 'helm upgrade mydemoapp-0.1.0.tgz helm/.'}
 } }
 
 }}
