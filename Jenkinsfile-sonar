@@ -11,7 +11,7 @@ agent any
        }}
   stage('sonar analysis & build')
         {steps
-      {withSonarQubeEnv(credentialsId: 'sonarqube-token')
+      {withSonarQubeEnv(credentialsId: 'sonarqube-token',installationName:'sonarqube')
       {withMaven(globalMavenSettingsConfig: '8846345d-0059-40fc-a95a-ae844f01f5e6', jdk: 'LOCAL_JDK', maven: 'LOCAL_MVN', mavenSettingsConfig: 'ca3190ae-99f2-4169-bdb2-6f7ee32aeac8', traceability: true) 
          {sh 'mvn package sonar:sonar'}
        }}}
