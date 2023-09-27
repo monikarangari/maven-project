@@ -15,7 +15,7 @@ agent any
        }}
   stage('deploy the package')
         {steps{sshagent(['dev-tomcat'])
-   {sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@18.204.222.55:/usr/share/tomcat/webapps'}
+   {sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@54.157.171.226:/usr/share/tomcat/webapps'}
        }}
 }
 }
