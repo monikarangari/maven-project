@@ -10,5 +10,14 @@ stage ('code build')
   {steps { withMaven(globalMavenSettingsConfig: '2eecdec3-136a-4c85-83f3-359d879a7da1', jdk: 'LocalJDK', maven: 'MAVEN', mavenSettingsConfig: 'fdfaa5d3-83af-482c-bcdf-ff3fc033966b', traceability: true) 
     { sh 'mvn package' }
   }}
+
+stage ('create docker image')
+  {steps { sh 'docker build -t pkw0301/devops-oct23:latest .' }
+  }
+
+  stage ('docker push from jenkins to DockerHub')
+  {steps { withDockerRegistry(credentialsId: 'DockerHubCredentials', url: 'https://index.docker.io/v1/') 
+     { sh 'docker push pkw0301/devops-oct23:latest' }   
+   }}
 }
 }
