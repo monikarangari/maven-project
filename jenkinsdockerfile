@@ -5,5 +5,10 @@ stages
 {
   stage ('scm checkout')
    {steps { git 'https://github.com/monikarangari/maven-project' }}
+
+stage ('code build')
+  {steps { withMaven(globalMavenSettingsConfig: '2eecdec3-136a-4c85-83f3-359d879a7da1', jdk: 'LocalJDK', maven: 'MAVEN', mavenSettingsConfig: 'fdfaa5d3-83af-482c-bcdf-ff3fc033966b', traceability: true) 
+    { sh 'mvn package' }
+  }}
 }
 }
